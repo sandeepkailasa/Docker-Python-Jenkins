@@ -9,9 +9,14 @@ pipeline {
             }
         }
 
-        stage('Sandeep Running Python Script') {
+        /*stage('Sandeep Running Python Script') {
             steps {
                 bat 'python add.py'
+            }
+        }*/
+        stage('Sandeep Detecting Duplicate Cells') {
+            steps {
+                bat 'python duplicate_cells.py'
             }
         }
 
