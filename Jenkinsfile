@@ -11,7 +11,7 @@ pipeline {
 
         stage('Sandeep Running Python Script') {
             steps {
-                bat '"C:\\Users\\Sandeep\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" add.py'
+                bat 'python add.py'
             }
         }
 
