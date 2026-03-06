@@ -8,13 +8,15 @@ pipeline {
                 git 'https://github.com/sandeepkailasa/GitProject'
             }
         }
-
-        /*stage('Sandeep Running Python Script') {
+        //This stage helps in running addition function on given inputs in input.csv
+        stage('Sandeep Running Python Script') {
             steps {
                 bat 'python add.py'
             }
-        }*/
-        stage('Sandeep Detecting Duplicate Cells') {
+        }
+
+        //This stage helps in Detecting Duplicate Cells given in cells.csv
+        stage('Sandeep we are Detecting Duplicate Cells') {
             steps {
                 bat 'python duplicate_cells.py'
             }
