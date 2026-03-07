@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+	environment {
+	    KUBECONFIG = 'C:\\Users\\Sandeep\\.kube\\config'
+	}
     stages {
         stage('Sandeep: Build Docker Image') {
             steps {
@@ -17,6 +19,12 @@ pipeline {
 	stage('Sandeep : Deploy to Kubernetes') {
             steps {
                 bat 'kubectl apply -f k8s/deployment.yaml'
+            }
+        }
+	stage('Sandeep: Verifying  Deployment') {
+            steps {
+                bat 'kubectl get pods'
+                bat 'kubectl get svc'
             }
         }
 
