@@ -3,22 +3,21 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code Sandeep') {
+        stage('Sandeep : Clone Repo') {
             steps {
-                git 'https://github.com/sandeepkailasa/GitProject'
-            }
-        }
-        //This stage helps in running addition function on given inputs in input.csv
-        stage('Sandeep Running Python Script') {
-            steps {
-                bat 'python add.py'
+                git 'https://github.com/sandeepkailasa/Docker-Python-Jenkins.git'
             }
         }
 
-        //This stage helps in Detecting Duplicate Cells given in cells.csv
-        stage('Sandeep we are Detecting Duplicate Cells') {
+        stage('Sandeep: Build Docker Image') {
             steps {
-                bat 'python duplicate_cells.py'
+                sh 'docker build -t python-docker-app .'
+            }
+        }
+
+        stage('Sandeep: Run Docker Container') {
+            steps {
+                sh 'docker run --rm python-docker-app'
             }
         }
 

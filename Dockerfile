@@ -6,4 +6,4 @@ COPY . .
 
 RUN pip install pandas
 
-CMD ["python","duplicate_cells.py"]
+CMD ["sh", "-c", "python duplicate_cells.py && python add.py"]
