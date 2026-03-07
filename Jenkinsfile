@@ -24,7 +24,7 @@ pipeline {
 	stage('Sandeep: Verifying  Deployment') {
             steps {
                 bat 'kubectl get pods'
-                bat 'kubectl get svc'
+                bat 'kubectl logs -l app=python-app'
             }
         }
 
