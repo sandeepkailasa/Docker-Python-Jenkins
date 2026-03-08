@@ -1,0 +1,152 @@
+Started by user Sandeep Kailasa
+
+Obtained Jenkinsfile from git https://github.com/sandeepkailasa/Docker-Python-Jenkins.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins
+ in C:\ProgramData\Jenkins\.jenkins\workspace\docker-python-job
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\docker-python-job\.git # timeout=10
+Fetching changes from the remote Git repository
+ > git.exe config remote.origin.url https://github.com/sandeepkailasa/Docker-Python-Jenkins.git # timeout=10
+Fetching upstream changes from https://github.com/sandeepkailasa/Docker-Python-Jenkins.git
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.39.2.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/sandeepkailasa/Docker-Python-Jenkins.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe rev-parse "origin/main^{commit}" # timeout=10
+Checking out Revision 1ae758793d4ca11105e0401b4af7b8d7cd029573 (origin/main)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f 1ae758793d4ca11105e0401b4af7b8d7cd029573 # timeout=10
+Commit message: "Update Dockerfile"
+ > git.exe rev-list --no-walk a334945242cc9d3158b143a481e4f20ed4705f2d # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Sandeep: Build Docker Image)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\docker-python-job>docker build -t python-docker-app . 
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 191B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.10
+#2 DONE 1.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/python:3.10@sha256:c6b2a9f40fbee6dc2ed9c2355655858ce3725c4d07aa546a102fa9ebb2d3164d
+#4 resolve docker.io/library/python:3.10@sha256:c6b2a9f40fbee6dc2ed9c2355655858ce3725c4d07aa546a102fa9ebb2d3164d 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 18.07kB 0.1s done
+#5 DONE 0.1s
+
+#6 [2/4] WORKDIR /app
+#6 CACHED
+
+#7 [3/4] COPY . .
+#7 DONE 0.1s
+
+#8 [4/4] RUN pip install pandas
+#8 2.903 Collecting pandas
+#8 2.977   Downloading pandas-2.3.3-cp310-cp310-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.8 MB)
+#8 4.136      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 12.6 MB/s eta 0:00:00
+#8 4.334 Collecting python-dateutil>=2.8.2
+#8 4.351   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#8 4.387      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 6.9 MB/s eta 0:00:00
+#8 5.181 Collecting numpy>=1.22.4
+#8 5.192   Downloading numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.8 MB)
+#8 6.492      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.8/16.8 MB 11.5 MB/s eta 0:00:00
+#8 6.667 Collecting pytz>=2020.1
+#8 6.680   Downloading pytz-2026.1.post1-py2.py3-none-any.whl (510 kB)
+#8 6.729      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 510.5/510.5 kB 11.3 MB/s eta 0:00:00
+#8 6.791 Collecting tzdata>=2022.7
+#8 6.805   Downloading tzdata-2025.3-py2.py3-none-any.whl (348 kB)
+#8 6.857      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 348.5/348.5 kB 7.6 MB/s eta 0:00:00
+#8 6.936 Collecting six>=1.5
+#8 6.952   Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#8 7.181 Installing collected packages: pytz, tzdata, six, numpy, python-dateutil, pandas
+#8 14.88 Successfully installed numpy-2.2.6 pandas-2.3.3 python-dateutil-2.9.0.post0 pytz-2026.1.post1 six-1.17.0 tzdata-2025.3
+#8 14.88 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#8 15.00 
+#8 15.00 [notice] A new release of pip is available: 23.0.1 -> 26.0.1
+#8 15.00 [notice] To update, run: pip install --upgrade pip
+#8 DONE 15.4s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 8.7s done
+#9 exporting manifest sha256:9352ee63e697cb8592ae4bc439f6b811f2dff0ad483a15fef648aa411aee634f 0.0s done
+#9 exporting config sha256:b19778e53036c5cc78e25c8e47f05d6224bb920a6f41cb5df1c5472a0d90d382 0.0s done
+#9 exporting attestation manifest sha256:99ba49994da8be96a377b6f42bd704a0e0364463b1c0a4be1d532757a0a1d144
+#9 exporting attestation manifest sha256:99ba49994da8be96a377b6f42bd704a0e0364463b1c0a4be1d532757a0a1d144 0.0s done
+#9 exporting manifest list sha256:4f508ffbc204894927463ecdd6f10025adb60a107f190713f0a170b9e01fe8c0 0.0s done
+#9 naming to docker.io/library/python-docker-app:latest done
+#9 unpacking to docker.io/library/python-docker-app:latest
+#9 unpacking to docker.io/library/python-docker-app:latest 2.5s done
+#9 DONE 11.4s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Sandeep : Deploy to Kubernetes)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\docker-python-job>kubectl apply -f k8s/deployment.yaml 
+deployment.apps/python-app unchanged
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Sandeep: Verifying  Deployment) (Sandeep: Verifying  Deployment)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\docker-python-job>kubectl get pods 
+NAME                          READY   STATUS             RESTARTS        AGE
+python-app-7d489b8fd6-hd44c   0/1     CrashLoopBackOff   6 (3m52s ago)   9m36s
+python-app-7d489b8fd6-t78t8   0/1     CrashLoopBackOff   6 (4m6s ago)    9m36s
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\docker-python-job>kubectl logs -l app=python-app 
+
+Duplicate Cells Report
+
+Cell: ecd1 appears in libraries: scracth1, scracth2
+Cell: ecd2 appears in libraries: scracth1, scracth3
+Sandeep's Updated Function 2 + 3 = 5
+Sandeep's Updated Function 5 + 6 = 11
+Sandeep's Updated Function 7 + 8 = 15
+Sandeep's Updated Function 9 + 10 = 19
+
+Duplicate Cells Report
+
+Cell: ecd1 appears in libraries: scracth1, scracth2
+Cell: ecd2 appears in libraries: scracth1, scracth3
+Sandeep's Updated Function 2 + 3 = 5
+Sandeep's Updated Function 5 + 6 = 11
+Sandeep's Updated Function 7 + 8 = 15
+Sandeep's Updated Function 9 + 10 = 19
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
